@@ -3,6 +3,7 @@ import Webcam from 'react-webcam';
 import { RadioButtonUnchecked } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import { setCameraImage } from './features/cameraSlice';
+import { useHistory } from 'react-router-dom';
 
 const videoConstraints = {
     width: 250,
@@ -14,11 +15,14 @@ const videoConstraints = {
 function WebcamCapture() {
     const webcamRef = useRef(null);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        dispatch(setCameraImage(imageSrc))
-    }, [webcamRef])
+        dispatch(setCameraImage(imageSrc));
+        history.push('/preview');
+
+    }, [webcamRef]);
 
     return (
         <div className="webcamCapture">
