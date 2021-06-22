@@ -3,6 +3,7 @@ import { Avatar } from '@material-ui/core';
 import './Chats.css';
 import { ChatBubble, Search } from '@material-ui/icons';
 import { db } from './firebase';
+import Chat from './Chat';
 
 function Chats() {
     const [posts, setPosts] = useState([]);
