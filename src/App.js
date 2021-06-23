@@ -26,7 +26,7 @@ function App() {
         dispatch(logout())
       }
     })
-  }, [])
+  }, []);
 
   return (
     <div className="app">
@@ -34,26 +34,31 @@ function App() {
         {!user ? (
           <Login />
         ) : (
+          <>
+          <img className="app__logo" src="https://variety.com/wp-content/uploads/2017/11/snapchat-logo.jpg?w=700" alt="" />
           <div className="app__body">
-          <Switch>
+            <div className="app__bodyBackground">
+              <Switch>
+                  <Route path="/chats/view">
+                      <ChatView />
+                    </Route>
 
-          <Route path="/chats/view">
-              <ChatView />
-            </Route>
+                  <Route path="/chats">
+                      <Chats />
+                    </Route>
 
-          <Route path="/chats">
-              <Chats />
-            </Route>
+                    <Route path="/preview">
+                      <Preview />
+                    </Route>
 
-            <Route path="/preview">
-              <Preview />
-            </Route>
-
-            <Route exact path="/">
-              <WebcamCapture />
-            </Route>
-          </Switch>
+                    <Route exact path="/">
+                      <WebcamCapture />
+                    </Route>
+                </Switch>
+            </div>
+          
           </div>
+          </>
         )}
             
       </Router>
